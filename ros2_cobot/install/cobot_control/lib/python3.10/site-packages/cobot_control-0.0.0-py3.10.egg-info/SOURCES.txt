@@ -9,6 +9,9 @@ setup.py
 ../../build/cobot_control/cobot_control.egg-info/top_level.txt
 ../../build/cobot_control/cobot_control.egg-info/zip-safe
 cobot_control/__init__.py
+cobot_control/camera_node.py
+cobot_control/cobot.py
+launch/cobot.launch.py
 resource/cobot_control
 test/test_copyright.py
 test/test_flake8.py

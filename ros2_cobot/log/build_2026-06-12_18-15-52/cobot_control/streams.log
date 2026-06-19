@@ -1,0 +1,38 @@
+[30.271s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control': PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build
+[30.446s] running develop
+[30.560s] Removing /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot-control.egg-link (link to .)
+[30.579s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control' returned '0': PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build
+[30.581s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/src/cobot_control': PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cobot_control build --build-base /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build install --record /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/install.log --single-version-externally-managed install_data --force
+[30.743s] running egg_info
+[30.743s] writing ../../build/cobot_control/cobot_control.egg-info/PKG-INFO
+[30.763s] writing dependency_links to ../../build/cobot_control/cobot_control.egg-info/dependency_links.txt
+[30.771s] writing entry points to ../../build/cobot_control/cobot_control.egg-info/entry_points.txt
+[30.871s] writing requirements to ../../build/cobot_control/cobot_control.egg-info/requires.txt
+[30.949s] writing top-level names to ../../build/cobot_control/cobot_control.egg-info/top_level.txt
+[30.955s] reading manifest file '../../build/cobot_control/cobot_control.egg-info/SOURCES.txt'
+[30.959s] writing manifest file '../../build/cobot_control/cobot_control.egg-info/SOURCES.txt'
+[30.960s] running build
+[30.961s] running build_py
+[30.961s] copying cobot_control/camera_node.py -> /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build/lib/cobot_control
+[30.962s] copying cobot_control/main.py -> /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build/lib/cobot_control
+[30.962s] running install
+[30.963s] running install_lib
+[30.965s] creating /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control
+[30.966s] copying /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build/lib/cobot_control/camera_node.py -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control
+[30.967s] copying /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build/lib/cobot_control/__init__.py -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control
+[30.967s] copying /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build/lib/cobot_control/main.py -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control
+[30.968s] byte-compiling /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/camera_node.py to camera_node.cpython-310.pyc
+[30.970s] byte-compiling /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/__init__.py to __init__.cpython-310.pyc
+[30.971s] byte-compiling /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/main.py to main.cpython-310.pyc
+[30.973s] running install_data
+[30.973s] copying resource/cobot_control -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/ament_index/resource_index/packages
+[30.974s] copying package.xml -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/cobot_control
+[30.974s] creating /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/cobot_control/launch
+[30.975s] copying launch/camera.launch.py -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/cobot_control/launch
+[30.975s] running install_egg_info
+[30.980s] Copying ../../build/cobot_control/cobot_control.egg-info to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info
+[30.982s] running install_scripts
+[30.997s] Installing camera_node script to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/cobot_control
+[30.997s] Installing camera_view script to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/cobot_control
+[30.997s] writing list of installed files to '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/install.log'
+[31.012s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/src/cobot_control' returned '0': PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cobot_control build --build-base /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build install --record /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/install.log --single-version-externally-managed install_data --force

@@ -1,3 +1,4 @@
 [console_scripts]
-
+camera_node = cobot_control.camera_node:main
+cobot = cobot_control.cobot:main
 

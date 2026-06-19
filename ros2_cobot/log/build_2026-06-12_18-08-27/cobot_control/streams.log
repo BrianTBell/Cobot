@@ -1,0 +1,20 @@
+[0.907s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control': PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build --no-deps symlink_data --force
+[1.085s] running develop
+[1.196s] running egg_info
+[1.197s] writing cobot_control.egg-info/PKG-INFO
+[1.197s] writing dependency_links to cobot_control.egg-info/dependency_links.txt
+[1.197s] writing entry points to cobot_control.egg-info/entry_points.txt
+[1.197s] writing requirements to cobot_control.egg-info/requires.txt
+[1.197s] writing top-level names to cobot_control.egg-info/top_level.txt
+[1.198s] reading manifest file 'cobot_control.egg-info/SOURCES.txt'
+[1.199s] writing manifest file 'cobot_control.egg-info/SOURCES.txt'
+[1.200s] running build_ext
+[1.200s] Creating /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot-control.egg-link (link to .)
+[1.201s] Installing camera_node script to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/cobot_control
+[1.201s] Installing camera_view script to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/cobot_control
+[1.201s] 
+[1.201s] Installed /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control
+[1.201s] running symlink_data
+[1.201s] symbolically linking /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/resource/cobot_control -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/ament_index/resource_index/packages
+[1.201s] symbolically linking /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/package.xml -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/cobot_control
+[1.223s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control' returned '0': PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build --no-deps symlink_data --force

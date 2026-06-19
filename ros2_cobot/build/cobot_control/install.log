@@ -1,7 +1,12 @@
+/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/camera_node.py
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/__init__.py
+/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/cobot.py
+/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/__pycache__/camera_node.cpython-310.pyc
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/__pycache__/__init__.cpython-310.pyc
+/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control/__pycache__/cobot.cpython-310.pyc
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/ament_index/resource_index/packages/cobot_control
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/cobot_control/package.xml
+/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/cobot_control/launch/cobot.launch.py
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info/PKG-INFO
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info/SOURCES.txt
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info/zip-safe
@@ -9,3 +14,5 @@
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info/requires.txt
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info/top_level.txt
 /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info/entry_points.txt
+/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/cobot_control/camera_node
+/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/cobot_control/cobot
