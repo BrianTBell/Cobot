@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Cobot">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0057226 0.040853 0.0016811"
+        rpy="0 0 0" />
+      <mass
+        value="0.26278" />
+      <inertia
+        ixx="0.00028514"
+        ixy="-2.3809E-05"
+        ixz="2.4356E-05"
+        iyy="0.0004582"
+        iyz="1.4094E-05"
+        izz="0.00037252" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.00000 0.15686 0.33333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link1">
+    <inertial>
+      <origin
+        xyz="0.0002096 6.5408E-05 0.045542"
+        rpy="0 0 0" />
+      <mass
+        value="0.065421" />
+      <inertia
+        ixx="2.0385E-05"
+        ixy="-2.2472E-11"
+        ixz="-3.5853E-08"
+        iyy="2.1853E-05"
+        iyz="3.9072E-07"
+        izz="1.2097E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.00000 0.15686 0.33333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint0"
+    type="revolute">
+    <origin
+      xyz="0 0 0.064"
+      rpy="0 0 -0.047986" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="6.2383"
+      effort="1.47"
+      velocity="4.7123" />
+  </joint>
+  <link
+    name="Link2">
+    <inertial>
+      <origin
+        xyz="-5.3344E-05 -5.9593E-05 0.11637"
+        rpy="0 0 0" />
+      <mass
+        value="0.12624" />
+      <inertia
+        ixx="0.00026005"
+        ixy="-1.9474E-11"
+        ixz="2.5272E-08"
+        iyy="0.00027616"
+        iyz="-1.3446E-10"
+        izz="2.721E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.00000 0.15686 0.33333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint1"
+    type="revolute">
+    <origin
+      xyz="0 0.00062634 0.0712"
+      rpy="-0.67663 0 0" />
+    <parent
+      link="Link1" />
+    <child
+      link="Link2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.4835"
+      upper="2.8798"
+      effort="1.47"
+      velocity="4.7123" />
+  </joint>
+  <link
+    name="Link3">
+    <inertial>
+      <origin
+        xyz="5.5921E-05 -6.6721E-05 0.09471"
+        rpy="0 0 0" />
+      <mass
+        value="0.11268" />
+      <inertia
+        ixx="0.00015766"
+        ixy="-3.2067E-10"
+        ixz="-9.8194E-09"
+        iyy="0.00017451"
+        iyz="-3.8422E-09"
+        izz="2.7272E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.00000 0.15686 0.33333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint2"
+    type="revolute">
+    <origin
+      xyz="0 -0.00020923 0.2073"
+      rpy="1.9015 0 0" />
+    <parent
+      link="Link2" />
+    <child
+      link="Link3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-4.0143"
+      upper="0.2618"
+      effort="1.47"
+      velocity="4.7123" />
+  </joint>
+  <link
+    name="Wrist">
+    <inertial>
+      <origin
+        xyz="0.00026493 -5.5511E-17 0.013451"
+        rpy="0 0 0" />
+      <mass
+        value="0.0090879" />
+      <inertia
+        ixx="1.2105E-06"
+        ixy="1.8289E-21"
+        ixz="1.3698E-21"
+        iyy="3.6175E-06"
+        iyz="2.9697E-20"
+        izz="3.0076E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Wrist.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.00000 0.15686 0.33333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Cobot/meshes/Wrist.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="WristJoint"
+    type="revolute">
+    <origin
+      xyz="0 -0.00020911 0.1673"
+      rpy="0.34589 0 0" />
+    <parent
+      link="Link3" />
+    <child
+      link="Wrist" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-2.2689"
+      upper="1.5708"
+      effort="1.47"
+      velocity="4.7123" />
+  </joint>
+</robot>
