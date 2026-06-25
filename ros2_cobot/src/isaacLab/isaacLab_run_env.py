@@ -48,7 +48,10 @@ from skrl.models.torch import DeterministicMixin, GaussianMixin, Model
 from skrl.trainers.torch import SequentialTrainer
 
 
-# Create a class for the cobot scene
+##
+# Create Scene
+##
+
 @configclass
 class CobotSceneCfg(InteractiveSceneCfg):
     """Configuration for Cobot Scene."""
@@ -105,7 +108,6 @@ class CobotSceneCfg(InteractiveSceneCfg):
 ##
 # MDP Settings
 ## 
-
 
 def reward_ball_speed(env: ManagerBasedRLEnv) -> torch.Tensor:
         vel = env.scene["ball"].data.root_lin_vel_w
@@ -235,7 +237,10 @@ class CobotEnvCfg(ManagerBasedRLEnvCfg):
         self.sim.render_interval = self.decimation
 
 
-# Define networks
+## 
+# Define Network
+##
+
 class Policy(GaussianMixin, Model):
     def __init__(self, observation_space, action_space, device):
         Model.__init__(self, observation_space=observation_space, action_space=action_space, device=device)
@@ -264,6 +269,10 @@ class Value(DeterministicMixin, Model):
     def compute(self, inputs, role):
         return self.net(inputs["observations"]), {}
 
+
+##
+# Main
+##
 
 def main():
     """Main function."""
