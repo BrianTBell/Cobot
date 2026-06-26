@@ -8,17 +8,17 @@
     name="base_link">
     <inertial>
       <origin
-        xyz="-0.0057226 0.040853 0.0016811"
+        xyz="0.00525395666776162 0.0408525795740504 -0.00282307452063939"
         rpy="0 0 0" />
       <mass
-        value="0.26278" />
+        value="0.262781517647469" />
       <inertia
-        ixx="0.00028514"
-        ixy="-2.3809E-05"
-        ixz="2.4356E-05"
-        iyy="0.0004582"
-        iyz="1.4094E-05"
-        izz="0.00037252" />
+        ixx="0.000298657832416568"
+        ixy="2.03974185168871E-05"
+        ixz="3.98921535405612E-05"
+        iyy="0.000458204278092449"
+        iyz="-1.86934752367561E-05"
+        izz="0.000359003269018671" />
     </inertial>
     <visual>
       <origin
@@ -26,12 +26,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/base_link.STL" />
+          filename="package://urdf/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.00000 0.15686 0.33333 1" />
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
       </material>
     </visual>
     <collision>
@@ -40,7 +40,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/base_link.STL" />
+          filename="package://urdf/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -48,13 +48,13 @@
     name="Link1">
     <inertial>
       <origin
-        xyz="0.0002096 6.5408E-05 0.045542"
+        xyz="0.01271 6.5408E-05 0.063242"
         rpy="0 0 0" />
       <mass
         value="0.065421" />
       <inertia
         ixx="2.0385E-05"
-        ixy="-2.2472E-11"
+        ixy="-2.2621E-11"
         ixz="-3.5853E-08"
         iyy="2.1853E-05"
         iyz="3.9072E-07"
@@ -66,12 +66,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Link1.STL" />
+          filename="package://urdf/meshes/Link1.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.00000 0.15686 0.33333 1" />
+          rgba="0.89412 0.89412 0.89412 1" />
       </material>
     </visual>
     <collision>
@@ -80,7 +80,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Link1.STL" />
+          filename="package://urdf/meshes/Link1.STL" />
       </geometry>
     </collision>
   </link>
@@ -88,35 +88,35 @@
     name="Joint0"
     type="revolute">
     <origin
-      xyz="0 0 0.064"
-      rpy="0 0 -0.047986" />
+      xyz="-0.012386 0.0016827 0.0463"
+      rpy="0 0 -0.13503" />
     <parent
       link="base_link" />
     <child
       link="Link1" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 0" />
     <limit
       lower="0"
-      upper="6.2383"
-      effort="1.47"
-      velocity="4.7123" />
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
   <link
     name="Link2">
     <inertial>
       <origin
-        xyz="-5.3344E-05 -5.9593E-05 0.11637"
+        xyz="0.0124466636587925 -5.95941678555704E-05 0.116365819603615"
         rpy="0 0 0" />
       <mass
-        value="0.12624" />
+        value="0.126238291044564" />
       <inertia
-        ixx="0.00026005"
-        ixy="-1.9474E-11"
-        ixz="2.5272E-08"
-        iyy="0.00027616"
-        iyz="-1.3446E-10"
-        izz="2.721E-05" />
+        ixx="0.000260048350322063"
+        ixy="-1.56028724960849E-11"
+        ixz="2.53370157988681E-08"
+        iyy="0.000276157182133765"
+        iyz="-1.44827890234785E-10"
+        izz="2.72102296500098E-05" />
     </inertial>
     <visual>
       <origin
@@ -124,12 +124,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Link2.STL" />
+          filename="package://urdf/meshes/Link2.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.00000 0.15686 0.33333 1" />
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
       </material>
     </visual>
     <collision>
@@ -138,7 +138,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Link2.STL" />
+          filename="package://urdf/meshes/Link2.STL" />
       </geometry>
     </collision>
   </link>
@@ -146,8 +146,8 @@
     name="Joint1"
     type="revolute">
     <origin
-      xyz="0 0.00062634 0.0712"
-      rpy="-0.67663 0 0" />
+      xyz="0 0.00062634 0.0889"
+      rpy="0 0 0" />
     <parent
       link="Link1" />
     <child
@@ -155,26 +155,26 @@
     <axis
       xyz="1 0 0" />
     <limit
-      lower="-1.4835"
-      upper="2.8798"
-      effort="1.47"
-      velocity="4.7123" />
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
   <link
     name="Link3">
     <inertial>
       <origin
-        xyz="5.5921E-05 -6.6721E-05 0.09471"
+        xyz="0.0125559189956351 -6.67246436310775E-05 0.0947095307629157"
         rpy="0 0 0" />
       <mass
-        value="0.11268" />
+        value="0.11268362796461" />
       <inertia
-        ixx="0.00015766"
-        ixy="-3.2067E-10"
-        ixz="-9.8194E-09"
-        iyy="0.00017451"
-        iyz="-3.8422E-09"
-        izz="2.7272E-05" />
+        ixx="0.000157659793468441"
+        ixy="-3.22653920261203E-10"
+        ixz="-9.84402629564098E-09"
+        iyy="0.000174514600376214"
+        iyz="-3.89233565336632E-09"
+        izz="2.72715738576209E-05" />
     </inertial>
     <visual>
       <origin
@@ -182,12 +182,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Link3.STL" />
+          filename="package://urdf/meshes/Link3.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.00000 0.15686 0.33333 1" />
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
       </material>
     </visual>
     <collision>
@@ -196,7 +196,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Link3.STL" />
+          filename="package://urdf/meshes/Link3.STL" />
       </geometry>
     </collision>
   </link>
@@ -205,7 +205,7 @@
     type="revolute">
     <origin
       xyz="0 -0.00020923 0.2073"
-      rpy="1.9015 0 0" />
+      rpy="0 0 0" />
     <parent
       link="Link2" />
     <child
@@ -213,26 +213,26 @@
     <axis
       xyz="1 0 0" />
     <limit
-      lower="-4.0143"
-      upper="0.2618"
-      effort="1.47"
-      velocity="4.7123" />
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
   <link
-    name="Wrist">
+    name="Link4">
     <inertial>
       <origin
-        xyz="0.00026493 -5.5511E-17 0.013451"
+        xyz="0.0127649372865127 2.64459189193867E-10 0.0152585681228609"
         rpy="0 0 0" />
       <mass
-        value="0.0090879" />
+        value="0.0101757375861059" />
       <inertia
-        ixx="1.2105E-06"
-        ixy="1.8289E-21"
-        ixz="1.3698E-21"
-        iyy="3.6175E-06"
-        iyz="2.9697E-20"
-        izz="3.0076E-06" />
+        ixx="1.50046840827186E-06"
+        ixy="2.9336577622294E-12"
+        ixz="-1.69292407282572E-12"
+        iyy="4.12314608309214E-06"
+        iyz="-2.95473556254146E-14"
+        izz="3.23610424333155E-06" />
     </inertial>
     <visual>
       <origin
@@ -240,12 +240,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Wrist.STL" />
+          filename="package://urdf/meshes/Link4.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.00000 0.15686 0.33333 1" />
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
       </material>
     </visual>
     <collision>
@@ -254,26 +254,26 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://Cobot/meshes/Wrist.STL" />
+          filename="package://urdf/meshes/Link4.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="WristJoint"
+    name="Joint3"
     type="revolute">
     <origin
       xyz="0 -0.00020911 0.1673"
-      rpy="0.34589 0 0" />
+      rpy="0 0 0" />
     <parent
       link="Link3" />
     <child
-      link="Wrist" />
+      link="Link4" />
     <axis
       xyz="1 0 0" />
     <limit
-      lower="-2.2689"
-      upper="1.5708"
-      effort="1.47"
-      velocity="4.7123" />
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
 </robot>
