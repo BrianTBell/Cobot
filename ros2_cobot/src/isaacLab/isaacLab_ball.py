@@ -47,8 +47,8 @@ from skrl.resources.preprocessors.torch import RunningStandardScaler
 from skrl.models.torch import DeterministicMixin, GaussianMixin, Model
 from skrl.trainers.torch import SequentialTrainer
 
-
-##
+import numpy as np
+import math
 # Create Scene
 ##
 
@@ -62,6 +62,7 @@ class CobotSceneCfg(InteractiveSceneCfg):
         prim_path="/World/Light",
         spawn=sim_utils.DomeLightCfg(intensity=3000.0, color=(0.75, 0.75, 0.75))
         )
+    
 
     # Spawn Ball
     ball = RigidObjectCfg(
@@ -73,14 +74,14 @@ class CobotSceneCfg(InteractiveSceneCfg):
             collision_props=sim_utils.CollisionPropertiesCfg(),
             visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.0, 1.0, 0.0)),
         ),
-        init_state=RigidObjectCfg.InitialStateCfg(pos=(-0.2, 0.0, 0.1)),
+        init_state=RigidObjectCfg.InitialStateCfg(pos=(-0.15, 0.0, 0.0)),
     )
 
     # Define Cobot w/ articulation config
     cobot = ArticulationCfg(
         prim_path="{ENV_REGEX_NS}/Cobot",
         spawn=sim_utils.UsdFileCfg(
-            usd_path=f"/home/brian/Projects/Cobot/ros2_cobot/src/cobot_control/usd/Cobot.usd",
+            usd_path=f"/home/brian/Projects/Cobot/ros2_cobot/src/usd/Cobot.usd",
             articulation_props=sim_utils.ArticulationRootPropertiesCfg(
                 fix_root_link=True,
             ),
@@ -90,12 +91,12 @@ class CobotSceneCfg(InteractiveSceneCfg):
                 "Joint0": 0.0,
                 "Joint1": 0.0,
                 "Joint2": 0.0,
-                "WristJoint": 0.0,
+                "Joint3": 0.0,
             }
         ),
         actuators={
             "all_joints": ImplicitActuatorCfg(
-                joint_names_expr=["Joint0","Joint1","Joint2","WristJoint"],
+                joint_names_expr=["Joint0","Joint1","Joint2","Joint3"],
                 effort_limit=1.47, #Nm Stall
                 velocity_limit=4.7123, #ras/s no load
                 stiffness = 0.0,
@@ -109,21 +110,35 @@ class CobotSceneCfg(InteractiveSceneCfg):
 # MDP Settings
 ## 
 
-def reward_ball_speed(env: ManagerBasedRLEnv) -> torch.Tensor:
-        vel = env.scene["ball"].data.root_lin_vel_w
-        return torch.norm(vel, dim=-1)
-    
-def reward_wrist_proximity(env: ManagerBasedRLEnv) -> torch.Tensor:
+def reward_wrist_drives_ball(env):
+    vel = torch.norm(env.scene["ball"].data.root_lin_vel_w, dim=-1)
     ball_pos = env.scene["ball"].data.root_pos_w
-    wrist_pos = env.scene["cobot"].data.body_pos_w[:, -1, :] # Last body part is wrist
-    dist = torch.norm(ball_pos - wrist_pos, dim=-1)
-    return torch.exp(-dist * 3.0) # peaks at 1.0 when wrist touches ball, decays with distance
+    wrist_pos = env.scene["cobot"].data.body_pos_w[:, -1, :]
+    #proximity = torch.exp(-torch.norm(ball_pos - wrist_pos, dim=-1) * 1.25)
+    proximity = 1.0 / (1.0 + torch.norm(ball_pos - wrist_pos, dim=-1)*3) 
+    return proximity + vel
+
 
 def ball_out_of_reach(env: ManagerBasedRLEnv, max_dist: float = 0.6) -> torch.Tensor:
         ball_pos = env.scene["ball"].data.root_pos_w
         cobot_pos = env.scene["cobot"].data.root_pos_w
         dist_xy = torch.norm(ball_pos[:, :2] - cobot_pos[:, :2], dim=-1)
         return dist_xy > max_dist
+
+def reset_ball(env, env_ids, asset_cfg, radius=0.15, height=0.1):
+        n = len(env_ids)
+        theta = torch.rand(n, device=env.device) * 2 * torch.pi
+
+        pos = torch.stack([radius*torch.cos(theta), radius*torch.sin(theta), torch.full((n,), height, device=env.device)], dim=1)
+        pos += env.scene.env_origins[env_ids]
+
+        quat = torch.zeros(n, 4, device=env.device)
+        quat[:, 0] = 1.0
+
+        ball = env.scene[asset_cfg.name]
+        ball.write_root_pose_to_sim(torch.cat([pos, quat], dim=-1), env_ids=env_ids)
+        ball.write_root_velocity_to_sim(torch.zeros(n, 6, device=env.device), env_ids=env_ids)
+
 
 
 @configclass
@@ -132,7 +147,7 @@ class ActionsCfg:
 
     # I think we're scaling torque for randomized actions movement,
     # and making it so this scalad torque is a random action for the joints
-    joint_effort = mdp.JointEffortActionCfg(asset_name="cobot", joint_names=["Joint0","Joint1","Joint2","WristJoint"], scale=1.25)
+    joint_effort = mdp.JointEffortActionCfg(asset_name="cobot", joint_names=["Joint0","Joint1","Joint2","Joint3"], scale=1.25)
 
 @configclass
 class ObservationsCfg:
@@ -149,7 +164,7 @@ class ObservationsCfg:
         # Add the wrist and ball too the policy so their interaction can be learned
         ball_pos = ObsTerm(func=mdp.root_pos_w, params={"asset_cfg": SceneEntityCfg("ball")})
         ball_vel = ObsTerm(func=mdp.root_lin_vel_w, params={"asset_cfg": SceneEntityCfg("ball")})
-        wrist_pos = ObsTerm(func=mdp.root_pos_w, params={"asset_cfg": SceneEntityCfg("cobot", body_names=["Wrist"])})
+        wrist_pos = ObsTerm(func=mdp.root_pos_w, params={"asset_cfg": SceneEntityCfg("cobot", body_names=["Link4"])})
 
         def __post_init__(self) -> None:
             self.enable_corruption = False # Not sure exactly what this is doing.
@@ -167,21 +182,24 @@ class EventCfg:
         func=mdp.reset_joints_by_offset,
         mode="reset",
         params={
-            "asset_cfg": SceneEntityCfg("cobot", joint_names=["Joint0","Joint1","Joint2","WristJoint"]),
-            "position_range": (-0.2, 0.2),
-            "velocity_range": (0.0, 0.0),
+            "asset_cfg": SceneEntityCfg("cobot", joint_names=["Joint0","Joint1","Joint2","Joint3"]),
+            "position_range": (-0.75, 0.75),
+            "velocity_range": (-0.05, 0.05),
         }
     )
+    
 
     reset_ball = EventTerm(
-        func=mdp.reset_root_state_uniform,
+        func=reset_ball,
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("ball"),
-            "pose_range": {"x": (-0.1, 0.1), "y": (-0.1, 0.1), "z": (0.5, 1.0)},
-            "velocity_range": {"z": (1.0, 2.0)},
+            "radius": 0.25,
+            "height": 0.05,
         }
     )
+
+
 
 @configclass
 class RewardsCfg:
@@ -189,15 +207,9 @@ class RewardsCfg:
 
     # (1) Staying alive reward
     alive = RewTerm(func=mdp.is_alive, weight=1.0)
-    # (2) Dying penalty
-    terminating = RewTerm(func=mdp.is_terminated, weight = -0.2)
-    # (3) Primary task: keep arm upright
-        # I would like to be able to have the arm touch and mvoe a ball that's on the ground, tutor me on how to do this.
-    # (4) Shaping task:
-        # Not really sure what I would use to shape, maybe something like keeping the ball still and touching it, I'd like it to play with it
+    terminating = RewTerm(func=mdp.is_terminated, weight = -0.5)
 
-    ball_speed = RewTerm(func=reward_ball_speed, weight = 0.5)
-    wrist_to_ball = RewTerm(func=reward_wrist_proximity, weight = 1.0)
+    wrist_drives_ball = RewTerm(func=reward_wrist_drives_ball, weight=1.0)
 
 @configclass
 class TerminationCfg:
@@ -207,7 +219,7 @@ class TerminationCfg:
     time_out = DoneTerm(func=mdp.time_out, time_out=True)
     # (2) Ball out of bounds / reach
     
-    ball_escaped = DoneTerm(func=ball_out_of_reach, params={"max_dist": 0.6})
+    ball_escaped = DoneTerm(func=ball_out_of_reach, params={"max_dist": 1.5})
 
 
 @configclass
@@ -215,7 +227,7 @@ class CobotEnvCfg(ManagerBasedRLEnvCfg):
     "Configuration for the cobot environment"
 
     # Scene settings
-    scene: CobotSceneCfg = CobotSceneCfg(num_envs=10, env_spacing=1.0)
+    scene: CobotSceneCfg = CobotSceneCfg(num_envs=10, env_spacing=3.0)
     # Basic settings
     observations : ObservationsCfg = ObservationsCfg()
     actions: ActionsCfg = ActionsCfg()
@@ -301,7 +313,7 @@ def main():
         value_preprocessor=RunningStandardScaler,
         value_preprocessor_kwargs={"size": 1},
         experiment=ExperimentCfg(
-            directory="runs/cobot",
+            directory="/home/brian/Projects/Cobot/ros2_cobot/src/isaacLab/runs/cobot",
             write_interval=500,
             checkpoint_interval=5000,
         )
@@ -317,6 +329,8 @@ def main():
     )
 
     trainer = SequentialTrainer(cfg={"timesteps": 200_000}, env=env, agents=agent)
+    agent.load("/home/brian/Projects/Cobot/ros2_cobot/src/isaacLab/runs/cobot/26-06-26_20-08-57-764323_PPO/checkpoints/agent_100000.pt")
+    #trainer.eval()
     trainer.train()
 
 if __name__ == "__main__":

@@ -99,8 +99,8 @@
     <limit
       lower="0"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="1.47"
+      velocity="4.7123" />
   </joint>
   <link
     name="Link2">
@@ -157,8 +157,8 @@
     <limit
       lower="0"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="1.47"
+      velocity="4.7123" />
   </joint>
   <link
     name="Link3">
@@ -215,8 +215,8 @@
     <limit
       lower="0"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="1.47"
+      velocity="4.7123" />
   </joint>
   <link
     name="Link4">
@@ -273,7 +273,7 @@
     <limit
       lower="0"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="1.47"
+      velocity="4.7123" />
   </joint>
 </robot>
