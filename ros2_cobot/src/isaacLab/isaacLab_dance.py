@@ -21,6 +21,7 @@ parser.add_argument("--num_envs", type=int, default=248, help="Number of sim env
 parser.add_argument("--playback", action="store_true", help="Play song audio synced to env 0.")
 parser.add_argument("--phase", type=int, default=1, help="Trainin phase: 1=dance only, 2=dance+standing_up.")
 parser.add_argument("--agent", action="store_true", help="Load the agent path stored in main().")
+parser.add_argument("--eval", action="store_true", help="Loads agent evaluation in liue of default training.")
 # append AppLauncher cli args
 AppLauncher.add_app_launcher_args(parser)
 # parse the arguments
@@ -189,10 +190,12 @@ def variety_reward(env):
     """Penalize all joints for staying near their recent average position"""
     joint_pos = env.scene["cobot"].data.joint_pos  # (num_envs, 4)
 
-    # how far each joint is from its 200-step average → (num_envs, 4)
+    # how far each joint is from its n-step average → (num_envs, 4)
     dist_from_sma = (joint_pos - env.joint_sma).abs()
 
-    thresh = 15 * torch.pi / 180  # 15 degrees in radians
+    #min_dist_from_sma = dist_from_sma.min(dim=-1).values
+
+    thresh = 10 * torch.pi / 180 
 
     # penalty per joint, then sum across joints → (num_envs,)
     penalty = torch.clamp(thresh - dist_from_sma, min=0.0).sum(dim=-1)
@@ -210,13 +213,13 @@ class RewardsCfg:
     """Reward terms for the MDP"""
 
     # Reward for dancing to the sweet beat
-    dance = RewTerm(func=beat_reward, weight = 1)
+    #dance = RewTerm(func=beat_reward, weight = 1)
 
     # linear decreasing reward to keep cobot mostly upright (see lean_penalty())
     #lean = RewTerm(func=lean_penalty, weight = 0.5 if args_cli.phase == 2 else 0.0)
 
     # 
-    move_around = RewTerm(func=variety_reward, weight = 1 if args_cli.phase == 2 else 0.0)
+    move_around = RewTerm(func=variety_reward, weight = 1)# if args_cli.phase == 2 else 0.0)
 
 @configclass
 class ObservationsCfg:
@@ -226,9 +229,9 @@ class ObservationsCfg:
     class PolicyCfg(ObsGroup):
         """Observations policy"""
 
-        joint_vel_rel = ObsTerm(func=mdp.joint_vel_rel, params={"asset_cfg": SceneEntityCfg("cobot")})
-        joint1_pos = ObsTerm(func=mdp.joint_pos_rel, params={"asset_cfg": SceneEntityCfg("cobot", joint_names=["Joint1"])})
         audio = ObsTerm(func=audio_obs)
+        joint_vel = ObsTerm(func=mdp.joint_vel_rel, params={"asset_cfg": SceneEntityCfg("cobot")})
+        joint_q_pos = ObsTerm(func=mdp.joint_pos_rel, params={"asset_cfg": SceneEntityCfg("cobot")})
         sma = ObsTerm(func=joint_sma_obs)
 
         def __post_init__(self) -> None:
@@ -293,8 +296,8 @@ class CobotEnvCfg(ManagerBasedRLEnvCfg):
     def __post_init__(self) -> None:
         """Render initialization"""
         # general settings
-        self.decimation = 2             # Frames rendered relative to sim steps
-        self.episode_length_s = 60     # Define max episode length
+        self.decimation = 2   # Frames rendered relative to sim steps   
+        self.episode_length_s = 30   # Define max episode length
         # viewer settings
         self.viewer_eye = (8.0, 0.0, 5.0)
         # simulation settings
@@ -329,8 +332,9 @@ class DanceEnvironment(ManagerBasedRLEnv):
         # now run Isaac Lab setup
         super().__init__(cfg)
 
-        # circular buffer tracking all 4 joint positions over last 200 steps, per env
-        self.joint_history     = torch.zeros(self.num_envs, 200, 4, device=self.device)
+        self.sma_len           = 10  # number of steps in the joint-position SMA window
+        # circular buffer tracking all 4 joint positions over last sma_len steps, per env
+        self.joint_history     = torch.zeros(self.num_envs, self.sma_len, 4, device=self.device)
         self.joint_history_idx = 0  # current write position in the buffer
         self.joint_sma         = torch.zeros(self.num_envs, 4, device=self.device)
 
@@ -361,8 +365,8 @@ class DanceEnvironment(ManagerBasedRLEnv):
         result = super().step(action)
         joint_pos = self.scene["cobot"].data.joint_pos  # (num_envs, 4)
         self.joint_history[:, self.joint_history_idx, :] = joint_pos
-        self.joint_history_idx = (self.joint_history_idx + 1) % 200
-        self.joint_sma = self.joint_history.mean(dim=1)  # avg over 200 steps → (num_envs, 4)
+        self.joint_history_idx = (self.joint_history_idx + 1) % self.sma_len
+        self.joint_sma = self.joint_history.mean(dim=1)  # avg over sma_len steps → (num_envs, 4)
         return result
 
 
@@ -383,7 +387,7 @@ class Policy(GaussianMixin, Model):
         Model.__init__(self, observation_space=observation_space, action_space=action_space, device=device)
         GaussianMixin.__init__(self, clip_actions=False)
         self.net = nn.Sequential(
-            nn.Linear(14, 64), nn.ReLU(),  # joint_vel(4) + joint1_pos(1) + audio(5)
+            nn.Linear(17, 64), nn.ReLU(),  
             nn.Linear(64, 64), nn.ReLU(),
             nn.Linear(64, self.num_actions),
         )
@@ -398,7 +402,7 @@ class Value(DeterministicMixin, Model):
         Model.__init__(self, observation_space=observation_space, action_space=action_space, device=device)
         DeterministicMixin.__init__(self, clip_actions=False)
         self.net = nn.Sequential(
-            nn.Linear(14, 64), nn.ReLU(),  # joint_vel(4) + joint1_pos(1) + audio(5)
+            nn.Linear(17, 64), nn.ReLU(),  
             nn.Linear(64, 64), nn.ReLU(),
             nn.Linear(64, 1),
         )
@@ -413,12 +417,19 @@ class Value(DeterministicMixin, Model):
 ##
 
 def main(Load_Agent=False):
+
+    #song options
+    songs = {
+        "Oh Darling" : "/home/brian/Music/Oh! Darling (Remastered 2009).mp3",
+        "Billie Jean" : "/home/brian/Music/Michael Jackson - Billie Jean.mp3"
+    }
+
     """Main function."""
     # Load kit helper
     env_cfg = CobotEnvCfg()
     env_cfg.scene.num_envs=args_cli.num_envs
     # Setting up RL environment
-    env = DanceEnvironment(cfg=env_cfg, song_path="/home/brian/Music/Oh! Darling (Remastered 2009).mp3")
+    env = DanceEnvironment(cfg=env_cfg, song_path=songs["Billie Jean"])
     env = wrap_env(env)  # skrl wrapper
     obs_space = env.observation_space
     act_space = env.action_space
@@ -455,16 +466,19 @@ def main(Load_Agent=False):
     )
 
     # Load Trainer
-    trainer = SequentialTrainer(cfg={"timesteps": 200_000}, env=env, agents=agent)
+    trainer = SequentialTrainer(cfg={"timesteps": 500_000}, env=env, agents=agent)
 
     # Load Agent if applicable
-    agent_path = ""
+    agent_path = "/home/brian/Projects/Cobot/ros2_cobot/src/isaacLab/runs/cobot/26-06-28_17-33-03-484227_PPO/checkpoints/best_agent.pt"
+    #agent_path = "/home/brian/Projects/Cobot/ros2_cobot/src/isaacLab/runs/Saves/Dance/phase1_agent_35000.pt"
     if args_cli.agent:
         agent.load(agent_path)
-    #trainer.eval()
-
-    # Train agent
-    trainer.train()
+    
+    # Train or eval agent
+    if args_cli.eval:
+        trainer.eval()
+    else: 
+        trainer.train()
 
 
 
