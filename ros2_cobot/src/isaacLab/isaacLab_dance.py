@@ -332,7 +332,7 @@ class DanceEnvironment(ManagerBasedRLEnv):
         # now run Isaac Lab setup
         super().__init__(cfg)
 
-        self.sma_len           = 10  # number of steps in the joint-position SMA window
+        self.sma_len           = 50  # number of steps in the joint-position SMA window
         # circular buffer tracking all 4 joint positions over last sma_len steps, per env
         self.joint_history     = torch.zeros(self.num_envs, self.sma_len, 4, device=self.device)
         self.joint_history_idx = 0  # current write position in the buffer
