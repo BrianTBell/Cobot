@@ -1,0 +1,17 @@
+package.xml
+setup.cfg
+setup.py
+../../build/cobot_perception/cobot_perception.egg-info/PKG-INFO
+../../build/cobot_perception/cobot_perception.egg-info/SOURCES.txt
+../../build/cobot_perception/cobot_perception.egg-info/dependency_links.txt
+../../build/cobot_perception/cobot_perception.egg-info/entry_points.txt
+../../build/cobot_perception/cobot_perception.egg-info/requires.txt
+../../build/cobot_perception/cobot_perception.egg-info/top_level.txt
+../../build/cobot_perception/cobot_perception.egg-info/zip-safe
+cobot_perception/__init__.py
+cobot_perception/camera_node.py
+cobot_perception/speech_to_text_node.py
+resource/cobot_perception
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

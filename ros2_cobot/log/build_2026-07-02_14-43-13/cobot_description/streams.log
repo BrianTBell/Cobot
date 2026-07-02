@@ -1,0 +1,62 @@
+[0.330s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/brian/Projects/Cobot/ros2_cobot/src/cobot_description -DCMAKE_INSTALL_PREFIX=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_description
+[0.412s] -- The C compiler identification is GNU 11.4.0
+[0.452s] -- The CXX compiler identification is GNU 11.4.0
+[0.457s] -- Detecting C compiler ABI info
+[0.500s] -- Detecting C compiler ABI info - done
+[0.507s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.507s] -- Detecting C compile features
+[0.507s] -- Detecting C compile features - done
+[0.509s] -- Detecting CXX compiler ABI info
+[0.562s] -- Detecting CXX compiler ABI info - done
+[0.567s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.567s] -- Detecting CXX compile features
+[0.568s] -- Detecting CXX compile features - done
+[0.569s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.829s] -- Found Python3: /home/brian/miniconda3/bin/python3 (found version "3.13.13") found components: Interpreter 
+[0.966s] -- Configuring done
+[0.967s] -- Generating done
+[0.969s] -- Build files have been written to: /home/brian/Projects/Cobot/ros2_cobot/build/cobot_description
+[0.972s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/brian/Projects/Cobot/ros2_cobot/src/cobot_description -DCMAKE_INSTALL_PREFIX=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_description
+[0.972s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/brian/Projects/Cobot/ros2_cobot/build/cobot_description -- -j16 -l16
+[0.995s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/brian/Projects/Cobot/ros2_cobot/build/cobot_description -- -j16 -l16
+[0.996s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/brian/Projects/Cobot/ros2_cobot/build/cobot_description
+[1.000s] -- Install configuration: ""
+[1.001s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf
+[1.001s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot
+[1.001s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot/Cobot.usd
+[1.022s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot/configuration
+[1.022s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot/configuration/Cobot_sensor.usd
+[1.027s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot/configuration/Cobot_robot.usd
+[1.027s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot/configuration/Cobot_base.usd
+[1.277s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot/configuration/Cobot_physics.usd
+[1.277s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/meshes
+[1.277s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/meshes/Link1.STL
+[1.306s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/meshes/Link3.STL
+[1.306s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/meshes/Link2.STL
+[1.323s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/meshes/base_link.STL
+[1.334s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/meshes/Link4.STL
+[1.356s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/launch
+[1.357s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/launch/display.launch
+[1.375s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/launch/gazebo.launch
+[1.403s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/Cobot.urdf
+[1.417s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/cobot.csv
+[1.439s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/config
+[1.440s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/urdf/config/joint_names_CobotASSY.yaml
+[1.461s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/usd
+[1.462s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/usd/Cobot.usd
+[1.509s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/ament_index/resource_index/package_run_dependencies/cobot_description
+[1.510s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/ament_index/resource_index/parent_prefix_path/cobot_description
+[1.511s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/environment/ament_prefix_path.sh
+[1.511s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/environment/ament_prefix_path.dsv
+[1.512s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/environment/path.sh
+[1.512s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/environment/path.dsv
+[1.512s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/local_setup.bash
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/local_setup.sh
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/local_setup.zsh
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/local_setup.dsv
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/package.dsv
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/ament_index/resource_index/packages/cobot_description
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/cmake/cobot_descriptionConfig.cmake
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/cmake/cobot_descriptionConfig-version.cmake
+[1.513s] -- Installing: /home/brian/Projects/Cobot/ros2_cobot/install/cobot_description/share/cobot_description/package.xml
+[1.515s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/brian/Projects/Cobot/ros2_cobot/build/cobot_description

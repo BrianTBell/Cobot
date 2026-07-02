@@ -1,0 +1,21 @@
+[0.416s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/src/cobot_perception': AMENT_PREFIX_PATH=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces CONDA_PROMPT_MODIFIER=(base) LD_LIBRARY_PATH=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_perception/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_perception/lib/python3.10/site-packages:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces/lib/python3.13/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cobot_perception build --build-base /home/brian/Projects/Cobot/ros2_cobot/build/cobot_perception/build install --record /home/brian/Projects/Cobot/ros2_cobot/build/cobot_perception/install.log --single-version-externally-managed install_data
+[0.581s] running egg_info
+[0.581s] writing ../../build/cobot_perception/cobot_perception.egg-info/PKG-INFO
+[0.581s] writing dependency_links to ../../build/cobot_perception/cobot_perception.egg-info/dependency_links.txt
+[0.582s] writing entry points to ../../build/cobot_perception/cobot_perception.egg-info/entry_points.txt
+[0.582s] writing requirements to ../../build/cobot_perception/cobot_perception.egg-info/requires.txt
+[0.582s] writing top-level names to ../../build/cobot_perception/cobot_perception.egg-info/top_level.txt
+[0.583s] reading manifest file '../../build/cobot_perception/cobot_perception.egg-info/SOURCES.txt'
+[0.584s] writing manifest file '../../build/cobot_perception/cobot_perception.egg-info/SOURCES.txt'
+[0.584s] running build
+[0.584s] running build_py
+[0.584s] running install
+[0.584s] running install_lib
+[0.586s] running install_data
+[0.586s] running install_egg_info
+[0.587s] removing '/home/brian/Projects/Cobot/ros2_cobot/install/cobot_perception/lib/python3.10/site-packages/cobot_perception-0.0.0-py3.10.egg-info' (and everything under it)
+[0.587s] Copying ../../build/cobot_perception/cobot_perception.egg-info to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_perception/lib/python3.10/site-packages/cobot_perception-0.0.0-py3.10.egg-info
+[0.588s] running install_scripts
+[0.602s] Installing camera_node script to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_perception/lib/cobot_perception
+[0.602s] writing list of installed files to '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_perception/install.log'
+[0.619s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/src/cobot_perception' returned '0': AMENT_PREFIX_PATH=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces CONDA_PROMPT_MODIFIER=(base) LD_LIBRARY_PATH=/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_perception/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_perception/lib/python3.10/site-packages:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_interfaces/lib/python3.13/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cobot_perception build --build-base /home/brian/Projects/Cobot/ros2_cobot/build/cobot_perception/build install --record /home/brian/Projects/Cobot/ros2_cobot/build/cobot_perception/install.log --single-version-externally-managed install_data

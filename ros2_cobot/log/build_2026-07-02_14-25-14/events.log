@@ -1,0 +1,5 @@
+[0.000000] (-) TimerEvent: {}
+[0.000221] (-) JobUnselected: {'identifier': 'cobot_control'}
+[0.000353] (-) JobUnselected: {'identifier': 'cobot_description'}
+[0.000370] (-) JobUnselected: {'identifier': 'cobot_interfaces'}
+[0.000523] (-) EventReactorShutdown: {}

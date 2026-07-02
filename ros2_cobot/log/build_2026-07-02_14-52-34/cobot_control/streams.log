@@ -1,0 +1,22 @@
+[0.422s] Invoking command in '/home/brian/Projects/Cobot/ros2_cobot/src/cobot_control': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cobot_control build --build-base /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build install --record /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/install.log --single-version-externally-managed install_data
+[0.589s] running egg_info
+[0.589s] writing ../../build/cobot_control/cobot_control.egg-info/PKG-INFO
+[0.589s] writing dependency_links to ../../build/cobot_control/cobot_control.egg-info/dependency_links.txt
+[0.589s] writing entry points to ../../build/cobot_control/cobot_control.egg-info/entry_points.txt
+[0.590s] writing requirements to ../../build/cobot_control/cobot_control.egg-info/requires.txt
+[0.590s] writing top-level names to ../../build/cobot_control/cobot_control.egg-info/top_level.txt
+[0.591s] reading manifest file '../../build/cobot_control/cobot_control.egg-info/SOURCES.txt'
+[0.592s] writing manifest file '../../build/cobot_control/cobot_control.egg-info/SOURCES.txt'
+[0.592s] running build
+[0.592s] running build_py
+[0.593s] running install
+[0.593s] running install_lib
+[0.595s] running install_data
+[0.595s] copying package.xml -> /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/share/cobot_control
+[0.595s] running install_egg_info
+[0.596s] removing '/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info' (and everything under it)
+[0.596s] Copying ../../build/cobot_control/cobot_control.egg-info to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages/cobot_control-0.0.0-py3.10.egg-info
+[0.597s] running install_scripts
+[0.611s] Installing cobot script to /home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/cobot_control
+[0.612s] writing list of installed files to '/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/install.log'
+[0.626s] Invoked command in '/home/brian/Projects/Cobot/ros2_cobot/src/cobot_control' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/brian/Projects/Cobot/ros2_cobot/install/cobot_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cobot_control build --build-base /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/build install --record /home/brian/Projects/Cobot/ros2_cobot/build/cobot_control/install.log --single-version-externally-managed install_data

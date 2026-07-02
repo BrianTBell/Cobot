@@ -1,0 +1,6 @@
+{
+  "package_name": "cobot_interfaces",
+  "non_idl_tuples": [
+    "/home/brian/Projects/Cobot/ros2_cobot/src/cobot_interfaces:msg/Observation.msg"
+  ]
+}
