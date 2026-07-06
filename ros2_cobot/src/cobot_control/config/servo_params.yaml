@@ -13,17 +13,17 @@ cobot_control:
     joints:
       shoulder_pan:
         servo_id: 1
-        min_degrees: -90
-        max_degrees: 90
+        min_degrees: -180
+        max_degrees: 180
       shoulder_tilt:
         servo_id: 2
-        min_degrees: -90
-        max_degrees: 90
+        min_degrees: -85
+        max_degrees: 85
       elbow:
         servo_id: 3
-        min_degrees: -135
-        max_degrees: 135
+        min_degrees: -120
+        max_degrees: 120
       wrist:
         servo_id: 4
-        min_degrees: -90
-        max_degrees: 90
+        min_degrees: -110
+        max_degrees: 110
