@@ -1,8 +1,0 @@
-setup.py
-cobot_interfaces/__init__.py
-cobot_interfaces.egg-info/PKG-INFO
-cobot_interfaces.egg-info/SOURCES.txt
-cobot_interfaces.egg-info/dependency_links.txt
-cobot_interfaces.egg-info/top_level.txt
-cobot_interfaces/msg/__init__.py
-cobot_interfaces/msg/_observation.py

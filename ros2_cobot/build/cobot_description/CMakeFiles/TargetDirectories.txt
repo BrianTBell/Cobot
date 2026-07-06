@@ -1,9 +1,0 @@
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/uninstall.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/cobot_description_uninstall.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/test.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/edit_cache.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/rebuild_cache.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/list_install_components.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/install.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/install/local.dir
-/home/brian/Projects/Cobot/ros2_cobot/build/cobot_description/CMakeFiles/install/strip.dir

@@ -1,1 +1,0 @@
-"""Trajectory node implementation placeholder."""

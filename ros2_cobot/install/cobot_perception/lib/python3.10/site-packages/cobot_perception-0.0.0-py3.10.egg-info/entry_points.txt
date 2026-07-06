@@ -1,4 +1,0 @@
-[console_scripts]
-camera_node = cobot_perception.camera_node:main
-speech_to_text_node = cobot_perception.speech_to_text_node:main
-

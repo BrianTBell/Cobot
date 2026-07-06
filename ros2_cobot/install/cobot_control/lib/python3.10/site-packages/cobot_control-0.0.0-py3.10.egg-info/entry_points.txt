@@ -1,3 +1,0 @@
-[console_scripts]
-cobot = cobot_control.cobot:main
-

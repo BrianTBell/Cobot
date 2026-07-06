@@ -1,1 +1,0 @@
-"""Joint controller implementation placeholder."""

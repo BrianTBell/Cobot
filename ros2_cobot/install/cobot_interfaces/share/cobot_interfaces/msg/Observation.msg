@@ -1,2 +1,0 @@
-string transcript 
-float32 transcript_confidence
