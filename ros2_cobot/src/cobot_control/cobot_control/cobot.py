@@ -9,7 +9,7 @@ from sensor_msgs.msg import JointState
 import time
 import math
 
-class Cobot:
+class Cobot(Node):
     def __init__(self):
         super().__init__('cobot')
         self.controller = jc.JointController()

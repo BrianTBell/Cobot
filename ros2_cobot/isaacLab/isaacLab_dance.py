@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 import utilities.song_extraction as Song
+import utilities.paths as paths
 
 import argparse
 from isaaclab.app import AppLauncher
@@ -86,7 +87,7 @@ class CobotSceneCfg(InteractiveSceneCfg):
     cobot = ArticulationCfg(
         prim_path="{ENV_REGEX_NS}/Cobot",
         spawn=sim_utils.UsdFileCfg(
-            usd_path=f"/home/brian/Projects/Cobot/ros2_cobot/src/usd/Cobot.usd",
+            usd_path=str(paths.USD_PATH),
             articulation_props=sim_utils.ArticulationRootPropertiesCfg(
                 fix_root_link=True,
             ),
@@ -450,7 +451,7 @@ def main(Load_Agent=False):
         value_preprocessor=RunningStandardScaler,
         value_preprocessor_kwargs={"size": 1},
         experiment=ExperimentCfg(
-            directory="/home/brian/Projects/Cobot/ros2_cobot/src/isaacLab/runs/cobot",
+            directory=str(paths.ISAACLAB_RUNS_DIR / "cobot"),
             write_interval=500,
             checkpoint_interval=5000,
         )
@@ -469,8 +470,8 @@ def main(Load_Agent=False):
     trainer = SequentialTrainer(cfg={"timesteps": 500_000}, env=env, agents=agent)
 
     # Load Agent if applicable
-    agent_path = "/home/brian/Projects/Cobot/ros2_cobot/src/isaacLab/runs/cobot/26-06-28_17-33-03-484227_PPO/checkpoints/best_agent.pt"
-    #agent_path = "/home/brian/Projects/Cobot/ros2_cobot/src/isaacLab/runs/Saves/Dance/phase1_agent_35000.pt"
+    agent_path = str(paths.ISAACLAB_RUNS_DIR / "cobot" / "26-06-28_17-33-03-484227_PPO" / "checkpoints" / "best_agent.pt")
+    #agent_path = str(paths.ISAACLAB_RUNS_DIR / "Saves" / "Dance" / "phase1_agent_35000.pt")
     if args_cli.agent:
         agent.load(agent_path)
     

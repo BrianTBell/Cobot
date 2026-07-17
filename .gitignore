@@ -1,4 +1,7 @@
 portfolio_outline.md
+projectplan.md
 ros2_cobot/build/
 ros2_cobot/install/
 ros2_cobot/log/
+__pycache__/
+*.pyc
