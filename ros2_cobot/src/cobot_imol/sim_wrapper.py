@@ -1,3 +1,4 @@
+#!/home/brian/miniconda3/envs/env_isaaclab/bin/python
 """
 Minimal IsaacLab sim wrapper for Phase 0 babbling: no ball, no reward-driven
 task, no PPO training. Just the arm, driven by OU noise, logging transitions
@@ -8,6 +9,9 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 import utilities.paths as paths
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+from cobot_control.utilities import load_joint_limits
 
 import argparse
 from isaaclab.app import AppLauncher
@@ -77,8 +81,11 @@ class CobotSceneCfg(InteractiveSceneCfg):
                 joint_names_expr=["Joint0", "Joint1", "Joint2", "Joint3"],
                 effort_limit=1.47,
                 velocity_limit=4.7123,
-                stiffness=0.0,
-                damping=0.5,
+                # STS3215 has onboard position PID; these approximate it as an
+                # external PD gain, taken from mujoco_menagerie's SO-ARM100
+                # (same servo, values reverse-engineered from real hardware)
+                stiffness=17.8,
+                damping=0.6,
             )
         }
     )
@@ -88,11 +95,21 @@ class CobotSceneCfg(InteractiveSceneCfg):
 # MDP settings
 ##
 
+JOINT_NAMES = ["Joint0", "Joint1", "Joint2", "Joint3"]
+JOINT_LIMITS = load_joint_limits()  # [(min_rad, max_rad), ...] in Joint0..Joint3 order
+
+
 @configclass
 class ActionsCfg:
     """Action specifications for the MDP."""
-    joint_effort = mdp.JointEffortActionCfg(
-        asset_name="cobot", joint_names=["Joint0", "Joint1", "Joint2", "Joint3"], scale=1.25
+    # OUNoise already outputs real joint angles (radians) bounded by JOINT_LIMITS,
+    # so the action is applied as-is: no additional scale/offset needed.
+    joint_pos = mdp.JointPositionActionCfg(
+        asset_name="cobot",
+        joint_names=JOINT_NAMES,
+        scale=1.0,
+        offset=0.0,
+        use_default_offset=False,
     )
 
 
@@ -152,7 +169,7 @@ class CobotEnvCfg(ManagerBasedRLEnvCfg):
 
     def __post_init__(self) -> None:
         self.decimation = 2
-        self.episode_length_s = 7.5
+        self.episode_length_s = 60
         self.viewer_eye = (8.0, 0.0, 5.0)
         self.sim.dt = 1 / 120
         self.sim.render_interval = self.decimation
@@ -173,7 +190,7 @@ def main():
     env_cfg.scene.num_envs = args_cli.num_envs
     env = ManagerBasedRLEnv(cfg=env_cfg)
 
-    OUnoise = OUNoise(size=ACTION_DIM)
+    OUnoise = OUNoise(joint_limits=JOINT_LIMITS)
     buffer = ReplayBuffer(capacity=BUFFER_CAPACITY, obs_dim=OBS_DIM, action_dim=ACTION_DIM)
 
     obs_dict, _ = env.reset()
